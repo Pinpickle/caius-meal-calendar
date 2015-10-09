@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.13.3"
+    "cheerio": "^0.19.0",
+    "express": "^4.13.3",
+    "moment": "^2.10.6",
+    "moment-timezone": "^0.4.1"
   },
   "devDependencies": {},
   "scripts": {
