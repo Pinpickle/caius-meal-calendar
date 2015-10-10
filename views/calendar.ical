@@ -1,0 +1,16 @@
+{% set format = 'YYYYMMDD[T]HHmmss[Z]' -%}
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Meals Timetable//NONSGML {{ user }}//EN
+X-WR-CALNAME:Meals Timetable - {{ user }}
+{%- for event in events %}
+BEGIN:VEVENT
+UID:{{ event.date.format(format) }}@{{ user }}.mealbookings
+DTSTART:{{ event.date.format(format) }}
+DTEND:{{ event.date.clone().add(1, 'hour').format(format) }}
+DESCRIPTION:
+LOCATION:Old Courts\, Gonville and Caius College
+SUMMARY:{{ event.title|calEscape }}
+END:VEVENT
+{%- endfor %}
+END:VCALENDAR
