@@ -4,11 +4,18 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "cheerio": "^0.19.0",
+    "dotenv": "^1.2.0",
     "express": "^4.13.3",
+    "lodash": "^3.10.1",
     "moment": "^2.10.6",
     "moment-timezone": "^0.4.1",
-    "nunjucks": "^2.1.0"
+    "mongoose": "^4.1.10",
+    "node-slug": "0.0.2",
+    "nunjucks": "^2.1.0",
+    "shorthash": "0.0.2",
+    "slug": "^0.9.1"
   },
   "devDependencies": {
     "zombie": "^4.1.0"
