@@ -20,6 +20,10 @@ $(document).ready(function () {
         $this.find('.login-form-output').html('<a href="' + data.url + '" class="login-form-subscribe">Subscribe</a>');
       })
       .fail(function (jqXHR) {
+        if ((!jqXHR.responseJSON) || (!jqXHR.responseJSON.error)) {
+          return;
+        }
+
         $this.find('.login-form-output').html('<p class="login-form-error">' + jqXHR.responseJSON.error + '</p>');
       })
       .always(function () {
