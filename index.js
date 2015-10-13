@@ -10,6 +10,8 @@ require('./config/views')(app);
 
 mongoose.connect(process.env.MONGO_URL);
 
+require('lib/user-updater').startTimer();
+
 app.use('/static', express.static('assets/dist'));
 
 app.get('/', function (req, res) {
