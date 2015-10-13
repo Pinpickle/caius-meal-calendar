@@ -17,6 +17,8 @@
     "moment-timezone": "^0.4.1",
     "mongoose": "^4.1.10",
     "node-slug": "0.0.2",
+    "nodemailer": "^1.8.0",
+    "nodemailer-mandrill-transport": "^0.3.0",
     "normalize.css": "^3.0.3",
     "nunjucks": "^2.1.0",
     "shorthash": "0.0.2",

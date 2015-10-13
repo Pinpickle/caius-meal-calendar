@@ -44,7 +44,20 @@ api.get('/calendar/:slug', function (req, res, next) {
       });
     })
     .catch(function (e) {
-      // TODO: email user and notify of error
+      if ((user) && (user.working)) {
+        req.app.locals.mailer.sendMail({
+          from: 'Caius Meal Calendar <noreply@christiansilver.me>',
+          to: user.getEmail(),
+          subject: 'We can\'t log you in!',
+          text: 'Hello, it\'s just me from the meal calendar here. We\'ve slipped up and can\'t log you in anymore, so you\'ll have to log in again for your calendar to stay up to date.'
+            + '\n\n'
+            + 'Just head to caius-meals.christiansilver.me to do so. No need to update anything on your devices.'
+        }, function (error, info) { });
+
+        user.working = false;
+        user.save();
+      }
+
       next(e);
     });
 });
@@ -82,6 +95,7 @@ api.post('/generate-calendar', function (req, res, next) {
 
           user = u;
           user.cookies = userMocker.getCookies();
+          user.working = true;
 
           return user.save();
         })

@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var app = express();
 
 require('./config/views')(app);
+require('./config/mailer')(app);
 
 mongoose.connect(process.env.MONGO_URL);
 
