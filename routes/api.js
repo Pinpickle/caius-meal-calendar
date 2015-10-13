@@ -79,17 +79,18 @@ api.post('/generate-calendar', function (req, res, next) {
 
   var userMocker = new UserMocker();
   var user;
+  var username = req.body.username.toLowerCase();
 
   userMocker.loginFromCredentials(req.body.username, req.body.password)
     .then(function () {
       return userMocker.getMealsInfo()
         .then(function (infos) {
-          return User.findOne({ _camId: req.body.username });
+          return User.findOne({ _camId: username });
         })
         .then(function (u) {
           if (!u) {
             u = new User({
-              camId: req.body.username
+              camId: username
             });
           }
 
