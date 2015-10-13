@@ -25,7 +25,7 @@ module.exports = function (prod) {
     entry: './scripts/main.js',
     module: {
       loaders: [
-        { test: /\.styl$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer!stylus-loader?paths=node_modules') }
+        { test: /\.styl$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer!stylus-loader?paths=' + path.join(dir, 'node_modules')) }
       ]
     },
     output: {
@@ -34,4 +34,4 @@ module.exports = function (prod) {
     },
     plugins: plugins
   };
-}
+};

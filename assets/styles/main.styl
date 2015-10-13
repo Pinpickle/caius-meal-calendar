@@ -1,3 +1,195 @@
-.d {
-  width: 100px;
+@import '~vc-reset-css/reset.css';
+
+/* Variables
+   ========================================================================== */
+
+$fontFamily = 'Lato', 'Helvetica Neue', 'Arial', sans-serif;
+
+$punit = 20px;
+
+$colorPrimary = #88aaff;
+
+/* Universal Stuff
+   ========================================================================== */
+
+html, body {
+  font-family: $fontFamily;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* Login Page
+  ========================================================================== */
+
+.main-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  box-sizing: border-box;
+  min-height: 100%;
+  width: 100%;
+  padding: $punit;
+
+  justify-content: center;
+  flex-direction: column;
+
+  background: radial-gradient(circle, #efefef, #eee);
+}
+
+.login-form {
+  width: 100%;
+  max-width: 400px;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.login-form-row {
+  margin-top: ($punit / 2);
+  margin-bottom: ($punit / 2);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+// HACK: Overrule reset CSS with overly specific rule
+input[type].login-form-control {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: ($punit / 2);
+  padding-bottom: ($punit / 2 - 2);
+  border-bottom: 2px solid alpha($colorPrimary, 0);
+
+  transition: border-bottom-color 0.2s;
+
+  &:focus {
+    border-bottom-color: $colorPrimary;
+  }
+
+  &::placeholder {
+    color: #aaa;
+  }
+
+  &::before {
+    content: ' ';
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 4px;
+
+    opacity: 0;
+    background-color: $colorPrimary;
+  }
+}
+
+button.login-form-submit {
+  position: relative;
+
+  box-sizing: border-box;
+  padding: ($punit / 2);
+  width: 100%;
+  background-color: $colorPrimary;
+  color: #fff;
+  font-size: 1.2em;
+  border-radius: 2px;
+
+  transition-property: transform, background-color, color;
+  transition-duration: 0.2s;
+
+  &:active {
+    transform: scale(0.95);
+    background-color: darken($colorPrimary, 5%);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px darken($colorPrimary, 5%);
+  }
+
+  &:active:focus {
+    box-shadow: none;
+  }
+
+  &:disabled {
+    background-color: desaturate(darken($colorPrimary, 30%), 70%);
+    color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.login-form-submit-loading {
+  pointer-events: none;
+  transition: opacity 1s;
+  opacity: 0;
+
+  &::before {
+    content: ' ';
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+    background-color: #eee;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    border-radius: 100%;
+    -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+    animation: sk-scaleout 1.0s infinite ease-in-out;
+  }
+
+  .login-form-submit.loading & {
+    opacity: 1;
+  }
+}
+
+.login-form-subscribe {
+  display: block;
+  padding: ($punit / 2);
+  font-size: 1.2em;
+  text-decoration: none;
+  text-align: center;
+  color: $colorPrimary;
+}
+
+.login-form-error {
+  text-align: center;
+  color: #b42;
+}
+
+
+@keyframes sk-scaleout {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+.login-form-preamble {
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
 }

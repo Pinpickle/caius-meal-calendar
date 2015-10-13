@@ -2,17 +2,40 @@
 <html>
   <head>
     <title>Caius Meal Calendar</title>
-    <link rel="stylsheet" type="text/css" href="{{ asset('css') }}"
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css') }}" />
   </head>
   <body>
     <noscript>This page requires JavaScript to work.</noscript>
-    <form id="raven-login-form" data-action="/api/generate-calendar">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" />
+    <div class="main-container">
+      <form class="login-form" id="raven-login-form" action="/api/generate-calendar" method="POST" autocomplete="off">
+        <div class="login-form-row">
+          <!-- Honeypot to stop chrome from autocompleting -->
+          <input type="password" style="display: none" />
 
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" />
-    </form>
+          <label class="sr-only" for="username">CRS ID</label>
+          <input class="login-form-control" type="text" name="username" id="username" placeholder="CRS ID" required />
+        </div>
+
+        <div class="login-form-row">
+          <label class="sr-only" for="password">Raven Password</label>
+          <input class="login-form-control" type="password" name="password" id="password" placeholder="Raven Password" required />
+        </div>
+
+        <div class="login-form-row">
+          <button class="button login-form-submit">
+            Generate Calendar
+            <div class="login-form-submit-loading"></div>
+          </button>
+        </div>
+
+        <div class="login-form-output login-form-row">
+
+        </div>
+
+        <p class="login-form-preamble">Sick of checking your Caius meal bookings manually? Enter your login details and generate a calendar that is automatically updated. We'll never store your password, so everything is safe.</p>
+      </form>
+    </div>
 
     <script type="text/javascript" src="{{ asset('js') }}"></script>
   </body>

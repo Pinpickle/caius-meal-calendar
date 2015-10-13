@@ -50,14 +50,14 @@ api.get('/calendar/:slug', function (req, res, next) {
 });
 
 api.post('/generate-calendar', function (req, res, next) {
-  if (!_.has(req.body, 'username')) {
+  if (_.isEmpty(req.body.username)) {
     let err = new Error('Must provide username.');
     err.status = 401;
     next(err);
     return;
   }
 
-  if (!_.has(req.body, 'password')) {
+  if (_.isEmpty(req.body.password)) {
     let err = new Error('Must provide password.');
     err.status = 401;
     next(err);
@@ -68,11 +68,6 @@ api.post('/generate-calendar', function (req, res, next) {
   var user;
 
   userMocker.loginFromCredentials(req.body.username, req.body.password)
-    .catch(function () {
-      var err = new Error('Incorrect login details.');
-      err.status = 401;
-      next(err);
-    })
     .then(function () {
       return userMocker.getMealsInfo()
         .then(function (infos) {
@@ -92,10 +87,14 @@ api.post('/generate-calendar', function (req, res, next) {
         })
         .then(function () {
           res.json({ url: 'webcal://' + req.get('host') + req.baseUrl + '/calendar/' + user.slug });
+        })
+        .catch(function (err) {
+          next(new Error('Something went wrong'));
         });
-    })
-    .catch(function (err) {
-      next(new Error('Something went wrong'));
+    }, function () {
+      var err = new Error('Incorrect login details.');
+      err.status = 401;
+      next(err);
     });
 });
 
