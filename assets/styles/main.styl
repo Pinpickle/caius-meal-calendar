@@ -1,4 +1,4 @@
-@import '~vc-reset-css/reset.css';
+@import '~normalize.css/normalize.css';
 
 /* Variables
    ========================================================================== */
@@ -69,22 +69,30 @@ html, body {
   }
 }
 
-// HACK: Overrule reset CSS with overly specific rule
-input[type].login-form-control {
+.login-form-control {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: ($punit / 2);
+  padding-bottom: ($punit / 2 - 2);
+
   text-align: center;
   font-size: 1.5em;
   font-weight: bold;
-  padding: ($punit / 2);
-  padding-bottom: ($punit / 2 - 2);
+
+  background: transparent;
+  border: none;
   border-bottom: 2px solid alpha($colorPrimary, 0);
 
   transition: border-bottom-color 0.2s;
 
   &:focus {
+    outline: none;
     border-bottom-color: $colorPrimary;
   }
 
   &::placeholder {
+    opacity: 1;
     color: #aaa;
   }
 
@@ -103,7 +111,7 @@ input[type].login-form-control {
   }
 }
 
-button.login-form-submit {
+.login-form-submit {
   position: relative;
 
   box-sizing: border-box;
@@ -112,6 +120,7 @@ button.login-form-submit {
   background-color: $colorPrimary;
   color: #fff;
   font-size: 1.2em;
+  border: none;
   border-radius: 2px;
 
   transition-property: transform, background-color, color;
@@ -123,6 +132,7 @@ button.login-form-submit {
   }
 
   &:focus {
+    outline: none;
     box-shadow: 0 0 0 2px darken($colorPrimary, 5%);
   }
 

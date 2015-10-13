@@ -17,12 +17,12 @@
     "moment-timezone": "^0.4.1",
     "mongoose": "^4.1.10",
     "node-slug": "0.0.2",
+    "normalize.css": "^3.0.3",
     "nunjucks": "^2.1.0",
     "shorthash": "0.0.2",
     "slug": "^0.9.1",
     "style-loader": "^0.12.4",
     "stylus-loader": "^1.4.0",
-    "vc-reset-css": "^0.2.2",
     "webpack": "^1.12.2",
     "zombie": "^4.1.0"
   },
