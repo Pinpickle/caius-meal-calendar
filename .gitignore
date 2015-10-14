@@ -33,3 +33,6 @@ node_modules/*
 
 .env
 assets/dist
+config/*.crt
+config/*.csr
+config/*.key
