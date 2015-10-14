@@ -1,6 +1,6 @@
 require('../styles/main.styl');
 
-var $ = require('jQuery');
+var $ = require('jquery');
 
 $(document).ready(function () {
   console.log('he');
