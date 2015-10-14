@@ -29,7 +29,13 @@ mongoose.connect(process.env.MONGO_URL);
 
 require('lib/user-updater').startTimer();
 
-app.use('/static', express.static('assets/dist'));
+
+var options = { };
+if (app.settings.env != 'development') {
+  options.maxAge = 1000 * 60 * 60 * 365;
+}
+
+app.use('/static', express.static('assets/dist', options));
 
 app.get('/', function (req, res) {
   res.render('index.html');
