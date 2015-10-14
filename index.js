@@ -32,7 +32,8 @@ require('lib/user-updater').startTimer();
 
 var options = { };
 if (app.settings.env != 'development') {
-  options.maxAge = 1000 * 60 * 60 * 365;
+  console.log('decache');
+  options.maxAge = 60 * 60 * 365;
 }
 
 app.use('/static', express.static('assets/dist', options));
