@@ -106,7 +106,8 @@ api.post('/generate-calendar', function (req, res, next) {
         .catch(function (err) {
           next(new Error('Something went wrong'));
         });
-    }, function () {
+    }, function (e) {
+      console.error(e);
       var err = new Error('Incorrect login details.');
       err.status = 401;
       next(err);
